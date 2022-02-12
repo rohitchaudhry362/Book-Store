@@ -1,10 +1,11 @@
-import { Mongoose } from 'mongoose';
+const mongoose = require('mongoose');
 
 const BookInfo = require('../models/BookInfo');
 
 exports.getBooks = async (req, res) => {
   try {
-    const bookInfo = await BookInfo.find().sort('title');
+    const bookInfo = await BookInfo.find();
+    console.log(bookInfo);
     res.status(200).json(bookInfo);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -13,6 +14,7 @@ exports.getBooks = async (req, res) => {
 
 exports.createBook = async (req, res) => {
   try {
+    console.log(req.body);
     const book = req.body;
     const newBook = new BookInfo(book);
     await newBook.save();
@@ -22,12 +24,12 @@ exports.createBook = async (req, res) => {
   }
 };
 
-export const updateBook = async (req, res) => {
+exports.updateBook = async (req, res) => {
   try {
-    const _id = request.params.id;
-    const book = request.body;
+    const _id = req.params.id;
+    const book = req.body;
 
-    if (!Mongoose.Types.ObjectId.isValid(_id)) {
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
       return res.status(404).send('No book found with given id');
     }
 
