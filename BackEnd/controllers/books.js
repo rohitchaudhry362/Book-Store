@@ -12,6 +12,8 @@ exports.getBooks = async (req, res) => {
 
 exports.createBook = async (req, res) => {
   try {
+    console.log('We are here');
+    console.log(req.body);
     const book = req.body;
     const newBook = new BookInfo(book);
     await newBook.save();
