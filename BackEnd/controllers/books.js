@@ -43,3 +43,19 @@ exports.updateBook = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+exports.deleteBook = async (req, res) => {
+  try {
+    const _id = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) {
+      return res.status(404).send('No book found with given id');
+    }
+
+    await BookInfo.findByIdAndRemove(_id);
+
+    res.status(200).json({ message: 'Book deleted succesfully' });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
