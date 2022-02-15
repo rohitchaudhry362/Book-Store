@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
 const bookRoutes = require('./routes/books');
 
 // Initialize express app
@@ -14,7 +13,9 @@ app.use(express.json());
 // Enable cors
 app.use(cors());
 
+// Route for books
 app.use('/books', bookRoutes);
+
 
 const CONNECTION_URL = 'mongodb://localhost/book_store';
 const PORT = process.env.PORT || 5000;

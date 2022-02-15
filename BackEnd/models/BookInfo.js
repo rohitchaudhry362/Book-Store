@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-// Schema used to give some sort of specificity
-// Each book has to have these attributes
+// Schema for book table
 const bookSchema = mongoose.Schema({
   title: {
     type: String,
